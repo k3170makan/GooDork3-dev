@@ -1,0 +1,16 @@
+#dork site:m.*.com
+#regex
+	@Body: body_regex
+	@Anchors: anchors_regex
+	@Title: title_regex
+	@Url: url_regex
+	@Script: script_regex
+	@Input: input_regex
+#config
+	@Limit: result_limit
+	@UserAgent: user-agent
+	@inputfile: inputfile
+	@outputfile: outputfile
+	@outputformat: outformat
+	@operationalmode: passive
+	@verbose: True

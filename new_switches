@@ -1,0 +1,49 @@
+Some new switches are available in this version of GooDork.
+While developing implementation for them I needed to have a list
+of all the switches I wanted to make available.So I thought I might kill 2
+birds with one stone and keep the list here for documentation
+purposes. Enjoy ;) ---k3170
+
+Short switches:
+---------------
+	REGEX
+		-u search for a term in the url of the page
+		-t search displayable text in the title tag
+		-b search displayable text
+		-a search the href value of the anchor tags on the page
+		-s search the contents of the script tags
+		-i search the attributes of the input tags for a given value
+
+	CONFIG
+		-L limit the amount of the results processed to the first L---inclusive---
+		-U use a custom user agent value
+
+Long switches:
+--------------
+*please not all these options require an input file, see the --in switch
+
+	BULK MODES
+		--site run the site directive on all the url's supplied from an input file
+		--related run the 'related' directive 
+		--link this has nothing to do with dota i swear lols, run the 'link' directive on all URLs supplied via a file
+		--anchor run the 'related' directive on all URLS supplied by an input file
+	
+	INFORMATION GATHERING MODES
+		--passive this tells gooDork to strictly use google's cached version of the pages for searching
+				*by this i mean if you ask goodork to search for things in the source of a page via -u,-t,-b etc. 
+					it will make sure to request the source from cache, so that you don't make any noise in 
+					the related servers' logs ;)
+
+		--active this tells gooDork to make request to the URLs retrieved from a search
+				*by this i mean if you ask goodork to search for things in the source of a page via -u,-t,-b etc.
+					it will make sure to request the source straight from the related server
+	INPUT-OUTPUT
+		--in an input file, used to supply URLs for running goodork in any of the bulk modes
+		--out the path to an output file where gooDork will neatly format all the results it retrieves
+		--format the format to be used with the outfile
+			these formats include
+				*xml
+				*csv
+				*html
+				*JSON
+				any other formats you'd like? let me know ;) @k3170makan ---twitter

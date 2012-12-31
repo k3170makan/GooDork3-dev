@@ -1,0 +1,27 @@
+This file details the todo list for the GooDork3 project
+General Rules:
+	*
+	goo_operator:
+		Regex Applications still need to be added in goo_operater.py
+		the methods: inTitle,inBody,inScript,etc.. are 
+	OUTPUT/INPUT TRANSFORMS:
+	goo_xml:
+		I haven't done any work on the xml parser, if you're going to contribute to this please make sure
+		you do the following:
+			*create a goo_xml class
+			*have the goo_xml object parse the goo_result object
+				into an xml file
+			*you may encapsulate the file writting and output in goo_xml
+			*make sure that goo_operator can parse the goo_operator.results
+			in one call and have either an xml string be returned or the output file
+			---whether it be a user supplied file, or stdout---written to.
+			*please make provision for verbose output during file parsing
+	goo_html:
+			no work has been done here as yet
+	goo_csv:
+			no work has been done here as yet
+	goo_JSON:
+			no work has been done here as yet
+		* I would also like the OUTPUT transform scripts mentioned about to be able
+			to handle not only goo_result -> XML/CSV/JSON/HTML but also vice versa!
+	

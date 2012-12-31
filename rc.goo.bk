@@ -1,0 +1,13 @@
+#dork site:m.*.com
+#regex
+	@Body: body_regex
+	@Anchor: anchor_regex
+	@Title: title_regex
+	@URL: URL_regex
+	@Script: script_regex
+	@Input: input_regex
+#config
+	@InFile: inFile_inputfile
+	@OutFile: outFile_outputfile
+	@OutFormat: outFormat_outformat
+	@OpMode: opMode_active|passive
