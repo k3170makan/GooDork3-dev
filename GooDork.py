@@ -1,11 +1,10 @@
 #!/usr/bin/python
 #AUTHOR=Keith (k3170makan) Makan
 #Main controller for GooDork
-ie = 0
 try:
 	from bs4 import BeautifulSoup as soup
 except ImportError:
-	ie = 1
+	getbs4()
 import sys
 from gooLib.goo_config import config as goo_config
 from gooLib.goo_operator import Operator 
@@ -103,7 +102,4 @@ def getbs4():
 	sys.exit()
 	
 if __name__ == "__main__":
-	if ie:
-		getbs4()
-		sys.exit()
 	dork = gooDork(sys.argv[1:])
