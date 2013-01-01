@@ -3,6 +3,7 @@ from goo_rcfile import goo_rcfile as rcfile #too lazy to fix the name here lols
 from goo_netlib import goo_netlib
 from goo_result import goo_result as Result
 from sys import argv
+import goo_writer
 """
 	The Operator,
 		*Handles all netlib calls
@@ -11,7 +12,8 @@ from sys import argv
 		*Handles all reformating of results
 The idea with the operator is it runs the inital dork---or grabs the urls from the input file, if a bulk mode has been set---,
 once the netlib is done doing all the neccesary networking it returns a goo_results object for the operator to handle.
-So now the operator has a list of goo_result objects, it will then proceed to pruning the results in the list named goo_results.results according to the regex options suppled. Once all the pruning is done it checks the config object for an output file
+So now the operator has a list of goo_result objects, it will then proceed to pruning the results in the list named goo_results.results according to the regex options suppled.
+Once all the pruning is done it checks the config object for an output file
 and dumps the results according to the output format supplied.
 """
 #`People say I should follow a coding convention, I say coding conventions should follow me lols'
@@ -27,6 +29,10 @@ class Operator:
 			if self.config: #check that its not None
 				if self.config.hasDork(): #check if a dork was supplied
 					self.results=self.runDork()
+					if self.config.hasOutFile:
+						pass
+						# Move to goo_writer for writing to file.
+						
 					"""
 					for result in self.results:
 						try:
@@ -42,6 +48,8 @@ class Operator:
 				raise Exception('[goo_operator] No Config Recieved')
 		except Exception,e:
 			raise Exception("[goo_operator] Problem with config "+str(e))
+			
+		# Check if regex switches exist first?
 		print "Running Regexes"
 		self.runRegex()
 	"""
@@ -50,9 +58,9 @@ class Operator:
 		#getHTML for a dork and parse it to Result objects
 		if self.config and self.config.hasDork():
 			try:
-				goo_search=self.netlib.gooSearch(self.config.getDork()) #this should return a list of result objects
+				goo_search = self.netlib.gooSearch(self.config.getDork()) #this should return a list of result objects
 				#print "\n[goo_search] %s" % (goo_search)
-			except Exception,e :
+			except Exception,e:
 				raise Exception('\n[goo_operator] Problem running google search:\n\t%s, %s' % (str(type(e)),str(e)))
 			return goo_search #this is a results object
 		else:

@@ -5,4 +5,5 @@ class goo_csv:
 	def __init__(self,config):
 		self.config = config	
 	def goo2CSV(self,result):
+		pass
 		#please cater for either a list of results or a single one	

@@ -42,9 +42,10 @@ class config:
 		long_opIndex = 1
 		if ''.join(args).split('-')[0] == '':
 			long_opIndex = 0 #no dork was supplied
-			self.options['hasDork'] = False 
+			self.options['hasDork'] = False
 		else:
-			self.options['hasDork'] = True 
+			self.options['dork'] = ''.join(args).split('-')[0] # First argument is regarded as dork. No switches necessary.
+			self.options['hasDork'] = True
 		try:
 			args,opts = gnu_getopt(args,self.shortOptionsList,self.longOptionsList)
 		except GetoptError, e:
@@ -74,7 +75,7 @@ class config:
 		return
 
 	def hasDork(self):
-		return self.options.has_key('dork')
+		return self.options['hasDork']
 	def getDork(self):
 		if self.hasDork():
 			return self.options['dork']

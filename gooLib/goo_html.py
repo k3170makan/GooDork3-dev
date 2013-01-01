@@ -7,5 +7,6 @@ class goo_html:
 	def __init__(self,config):
 		self.config=config
 	def goo2HTML(self,result):  #this one call must see that all parsing is done
+		pass
 		#please cater for a list of results or a single result
 		

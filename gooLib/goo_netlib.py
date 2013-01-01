@@ -25,7 +25,7 @@ class goo_netlib:
 			httpconn = httplib.HTTPConnection('www.google.com')
 			#check if the user prefers verbatim mode here
 			start="0"
-			httpconn.putrequest('GET','/search?q='+dork+'&start='+start+'&num=100')
+			httpconn.putrequest('GET','/search?q='+urllib2.quote(dork)+'&start='+start+'&num=100')
 			#httpconn.putheader('Referer',self.spoofy.getReferer())
 			if self.config.hasUserAgent():
 				httpconn.putheader('User-agent',self.config.getUserAgent())
@@ -56,7 +56,7 @@ class goo_netlib:
 		else:
 			#build a result object and return it
 			html = resp.read()	
-			stderr.write("%s" % (html))
+			stderr.write("%s" % (html)) # Needed?
 			result = parseHTML(html) #returns a list of results
 			return result 
 	def duckSearch(self,dork):
