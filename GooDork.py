@@ -1,6 +1,22 @@
 #!/usr/bin/python
 #AUTHOR=Keith (k3170makan) Makan
 #Main controller for GooDork
+try:
+	from bs4 import BeautifulSoup as soup
+except ImportError:
+	import gooLib.getbs4 as getbs4
+	print """
+* bs4 was not found. Would you like GooDork to download and install it?(y/n)
+"""
+	ch = raw_input(">>")
+	if ch.lower == 'y':
+		getbs4.download()
+	else
+		print """
+* You can download and install beautifulsoup4 (bs4) from here: http://pypi.python.org/pypi/beautifulsoup4
+* GooDork cannot run unless it is available.
+"""
+	
 import sys
 from gooLib.goo_config import config as goo_config
 from gooLib.goo_operator import Operator 
@@ -17,7 +33,7 @@ class gooDork:
 				with open("rc.goo") as f:
 					f.close()
 			except IOError,e:
-				sys.stderr.write("\n[!] Please supply either a rc.goo file or some commandline arguments for me to work with!")
+				sys.stderr.write("\n[!] Please supply either a rc.goo file or some commandline arguments for GooDork to work with!")
 				usage()
 			self.conf.parseRcFile("rc.goo")
 		#for key in self.conf.options:
@@ -51,17 +67,13 @@ SWITCHES
 		--in : supply an input file of urls to run gooDork on 
 		--out: supply a path to an output file, to dump results to 
 		--format: supply a format for the output file, default is goodork's
-			own output, options include
-				*XML
-				*CSV
-				*HTML
-				*JSON
-				if there are any other format's you'd like give me a shout ;)	
+			own output, options include: (XML/CSV/HTML/JSON)
+				if there are any other formats you'd like give me a shout ;)	
 	MISC
 		-v : specify the verbosity level
 		-h : display help
 	EXAMPLE:
-		./GooDork site:*.gov+(~Login|~Admin) -u:(admin|login|config)* -t:(Login|Administration)* --out=government_logins --L 100 --format=CSV
+		./GooDork.py site:"*.gov+(~Login|~Admin)" -u:"(admin|login|config)*" -t:"(Login|Administration)*" --out=government_logins --L 100 --format=CSV
 
 AUTHOR: Keith (k3170) Makan, https://twitter.com/k3170makan
 CONTRIBUTORS: 
@@ -69,5 +81,6 @@ CONTRIBUTORS:
 	Toufeeq (Ace) Ockards, https://twitter.com/teh_klone
 	0xerror, https://twitter.com/0xerror
 """
+	
 if __name__ == "__main__":
 	dork = gooDork(sys.argv[1:])
