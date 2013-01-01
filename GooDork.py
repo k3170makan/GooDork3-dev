@@ -9,9 +9,9 @@ except ImportError:
 * bs4 was not found. Would you like GooDork to download and install it?(y/n)
 """
 	ch = raw_input(">>")
-	if ch.lower == 'y':
+	if ch.lower() == 'y':
 		getbs4.download()
-	else
+	else:
 		print """
 * You can download and install beautifulsoup4 (bs4) from here: http://pypi.python.org/pypi/beautifulsoup4
 * GooDork cannot run unless it is available.
