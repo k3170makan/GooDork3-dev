@@ -3,6 +3,7 @@ from goo_rcfile import goo_rcfile as rcfile #too lazy to fix the name here lols
 from goo_netlib import goo_netlib
 from goo_result import goo_result as Result
 from sys import argv
+import goo_writer
 """
 	The Operator,
 		*Handles all netlib calls
@@ -28,6 +29,10 @@ class Operator:
 			if self.config: #check that its not None
 				if self.config.hasDork(): #check if a dork was supplied
 					self.results=self.runDork()
+					if self.config.hasOutFile:
+						pass
+						# Move to goo_writer for writing to file.
+						
 					"""
 					for result in self.results:
 						try:
@@ -53,9 +58,9 @@ class Operator:
 		#getHTML for a dork and parse it to Result objects
 		if self.config and self.config.hasDork():
 			try:
-				goo_search=self.netlib.gooSearch(self.config.getDork()) #this should return a list of result objects
+				goo_search = self.netlib.gooSearch(self.config.getDork()) #this should return a list of result objects
 				#print "\n[goo_search] %s" % (goo_search)
-			except Exception,e :
+			except Exception,e:
 				raise Exception('\n[goo_operator] Problem running google search:\n\t%s, %s' % (str(type(e)),str(e)))
 			return goo_search #this is a results object
 		else:
