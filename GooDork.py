@@ -5,7 +5,10 @@ try:
 	from bs4 import BeautifulSoup as soup
 except ImportError:
 	import gooLib.getbs4 as getbs4
-	print 'bs4 was not found, commencing download and install'
+	print """
+* bs4 was not found. Commencing Download and install.
+* You may need to re-run GooDork as admin/root if this fails.
+"""
 	getbs4.download()
 	
 import sys
