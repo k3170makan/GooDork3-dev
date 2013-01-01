@@ -56,7 +56,7 @@ class goo_netlib:
 		else:
 			#build a result object and return it
 			html = resp.read()	
-			stderr.write("%s" % (html))
+			stderr.write("%s" % (html)) # Needed?
 			result = parseHTML(html) #returns a list of results
 			return result 
 	def duckSearch(self,dork):
