@@ -11,7 +11,8 @@ from sys import argv
 		*Handles all reformating of results
 The idea with the operator is it runs the inital dork---or grabs the urls from the input file, if a bulk mode has been set---,
 once the netlib is done doing all the neccesary networking it returns a goo_results object for the operator to handle.
-So now the operator has a list of goo_result objects, it will then proceed to pruning the results in the list named goo_results.results according to the regex options suppled. Once all the pruning is done it checks the config object for an output file
+So now the operator has a list of goo_result objects, it will then proceed to pruning the results in the list named goo_results.results according to the regex options suppled.
+Once all the pruning is done it checks the config object for an output file
 and dumps the results according to the output format supplied.
 """
 #`People say I should follow a coding convention, I say coding conventions should follow me lols'
