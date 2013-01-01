@@ -73,7 +73,7 @@ SWITCHES
 		-v : specify the verbosity level
 		-h : display help
 	EXAMPLE:
-		./GooDork.py site:"*.gov+(~Login|~Admin)" -u:"(admin|login|config)*" -t:"(Login|Administration)*" --out=government_logins --L 100 --format=CSV
+		./GooDork.py "site:gov.cn intitle:hacked by" --out=hacked_sites --L 100 --format=CSV
 
 AUTHOR: Keith (k3170) Makan, https://twitter.com/k3170makan
 CONTRIBUTORS: 
