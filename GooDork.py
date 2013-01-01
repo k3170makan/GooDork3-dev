@@ -70,7 +70,7 @@ CONTRIBUTORS:
 	Toufeeq (Ace) Ockards, https://twitter.com/teh_klone
 	0xerror, https://twitter.com/0xerror
 """
-def getbs4(self):
+def getbs4():
 		url = 'http://pypi.python.org/packages/source/b/beautifulsoup4/beautifulsoup4-4.1.3.tar.gz'
 		file_name = url.split('/')[-1]
 		u = urllib2.urlopen(url)
