@@ -19,7 +19,7 @@ and dumps the results according to the output format supplied.
 class Operator:
 	def __init__(self,config):#recieves a config object and operates on it
 		self.results=[] #this will hold the result objects of whatever needed to be done
-		self.config=config
+		self.config = config
 		self.netlib = goo_netlib(config)
 		#try: #work the supplied config
 		print self.config
@@ -41,7 +41,7 @@ class Operator:
 			else:
 				raise Exception('[goo_operator] No Config Recieved')
 		except Exception,e:
-			raise Exception("[goo_operator] Problem with config")
+			raise Exception("[goo_operator] Problem with config "+str(e))
 		print "Running Regexes"
 		self.runRegex()
 	"""
@@ -53,7 +53,7 @@ class Operator:
 				goo_search=self.netlib.gooSearch(self.config.getDork()) #this should return a list of result objects
 				#print "\n[goo_search] %s" % (goo_search)
 			except Exception,e :
-				raise Exception('\n[goo_operator] Problem running google search:\n\t%s, %s' % (type(e),e))
+				raise Exception('\n[goo_operator] Problem running google search:\n\t%s, %s' % (str(type(e)),str(e)))
 			return goo_search #this is a results object
 		else:
 			raise Exception('\n[goo_operator] No dork supplied in config')
@@ -65,7 +65,7 @@ class Operator:
 			try:
 				infile=open(self.config.getInfile(),"r")
 			except Exception, e:
-				raise Exception('\n[goo_operator] Problem Opening Input file:\n\t%s' % (e))
+				raise Exception("\n[goo_operator] Problem Opening Input file:\n\t%s" % (str(e)))
 			urls=infile.readlines()
 			if len(urls)==0:
 				raise Exception('\n[goo_operator] Problem with Input file contents, contains nothing')
@@ -115,7 +115,7 @@ class Operator:
 		try:
 			return
 		except Exception,e:
-			raise Exception("\n[goo_operator] Problem running inBody: %s" % (e))
+			raise Exception("\n[goo_operator] Problem running inBody: %s" % (str(e)))
 	"""
 		Return a list of Result objects with title text that matches `pattern'
 	"""
@@ -123,7 +123,7 @@ class Operator:
 		try:
 			return
 		except Exception,e:
-			raise Exception("\n[goo_operator] Problem running inTitle: %s" % (e))
+			raise Exception("\n[goo_operator] Problem running inTitle: %s" % (str(e)))
 	"""
 		Return a list of Result objects with script tag contents that matches `pattern'
 		*this searches all script tags on the page, excluding cross site scripted tags
@@ -133,7 +133,7 @@ class Operator:
 		try:
 			return
 		except Exception,e:
-			raise Exception("\n[goo_operator] Problem running inScript: %s" % (e))
+			raise Exception("\n[goo_operator] Problem running inScript: %s" % (str(e)))
 	"""
 		Return a list of Result objects with Input tags that contain values AND/OR parameter names
 		that match `pattern'
@@ -147,7 +147,7 @@ class Operator:
 		try:
 			return
 		except Exception,e:
-			raise Exception("\n[goo_operator] Problem running inInput: %s" % (e))
+			raise Exception("\n[goo_operator] Problem running inInput: %s" % (str(e)))
 	"""
 		Return a list of Result objects with Anchor tags that contain href values that match `pattern'
 
@@ -158,7 +158,7 @@ class Operator:
 		try:
 			return
 		except Exception,e:
-			raise Exception("\n[goo_operator] Problem running inAnchor: %s" % (e))
+			raise Exception("\n[goo_operator] Problem running inAnchor: %s" % (str(e)))
 	"""
 		**a hint at whats next...GooDork regex scripting
 		Apply the user supplied logical operators to process regexes
@@ -185,7 +185,7 @@ class Operator:
 		try:
 			return
 		except Exception, e:
-			raise Exception("\n[goo_operator] Problem running siteMode(): " % (e))	
+			raise Exception("\n[goo_operator] Problem running siteMode(): "+(str(e)))	
 	"""
 		Run the `related:' directive on each URL supplied by the `infile' argument
 		Returns a list of lists of Result objects from this operation
@@ -197,7 +197,7 @@ class Operator:
 		try:
 			return
 		except Exception, e:
-			raise Exception("\n[goo_operator] Problem running relatedMode(): " % (e))	
+			raise Exception("\n[goo_operator] Problem running relatedMode(): "+(str(e)))	
 	"""
 		Run the `link:' directive on each URL supplied by the `infile' argument
 		Returns a list of lists of Result objects from this operation
@@ -209,7 +209,7 @@ class Operator:
 		try:
 			return
 		except Exception, e:
-			raise Exception("\n[goo_operator] Problem running linkMode(): " % (e))	
+			raise Exception("\n[goo_operator] Problem running linkMode(): "+(str(e)))	
 	"""
 		Run the `anchor:' directive on each URL supplied by the `infile' argument
 		Returns a list of lists of Result objects from this operation
@@ -218,7 +218,7 @@ class Operator:
 		try:
 			return
 		except Exception, e:
-			raise Exception("\n[goo_operator] Problem running anchorMode(): " % (e))	
+			raise Exception("\n[goo_operator] Problem running anchorMode(): "+(str(e)))	
 	"""
 		***
 	"""
