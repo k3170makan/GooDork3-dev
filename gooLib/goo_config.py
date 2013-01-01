@@ -48,7 +48,7 @@ class config:
 		try:
 			args,opts = gnu_getopt(args,self.shortOptionsList,self.longOptionsList)
 		except GetoptError, e:
-			raise Exception('[goo_config] unknown option(s) were supplied: '+e)
+			raise Exception('[goo_config] unknown option(s) were supplied: '+str(e))
 			return False #problem with the options supplied
 		#okay now I need to parse this to a dictionary
 		for index,arg in enumerate(args):	
