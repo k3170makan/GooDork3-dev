@@ -17,7 +17,7 @@ class gooDork:
 				with open("rc.goo") as f:
 					f.close()
 			except IOError,e:
-				sys.stderr.write("\n[!] Please supply either a rc.goo file or some commandline arguments for me to work with!")
+				sys.stderr.write("\n[!] Please supply either a rc.goo file or some commandline arguments for GooDork to work with!")
 				usage()
 			self.conf.parseRcFile("rc.goo")
 		#for key in self.conf.options:
@@ -51,11 +51,7 @@ SWITCHES
 		--in : supply an input file of urls to run gooDork on 
 		--out: supply a path to an output file, to dump results to 
 		--format: supply a format for the output file, default is goodork's
-			own output, options include
-				*XML
-				*CSV
-				*HTML
-				*JSON
+			own output, options include: (XML/CSV/HTML/JSON)
 				if there are any other format's you'd like give me a shout ;)	
 	MISC
 		-v : specify the verbosity level
