@@ -6,10 +6,16 @@ try:
 except ImportError:
 	import gooLib.getbs4 as getbs4
 	print """
-* bs4 was not found. Commencing Download and install.
-* You may need to re-run GooDork as admin/root if this fails.
+* bs4 was not found. Would you like GooDork to download and install it?(y/n)
 """
-	getbs4.download()
+	ch = raw_input(">>")
+	if ch.lower == 'y':
+		getbs4.download()
+	else
+		print """
+* You can download and install beautifulsoup4 (bs4) from here: http://pypi.python.org/pypi/beautifulsoup4
+* GooDork cannot run unless it is available.
+"""
 	
 import sys
 from gooLib.goo_config import config as goo_config
@@ -62,12 +68,12 @@ SWITCHES
 		--out: supply a path to an output file, to dump results to 
 		--format: supply a format for the output file, default is goodork's
 			own output, options include: (XML/CSV/HTML/JSON)
-				if there are any other format's you'd like give me a shout ;)	
+				if there are any other formats you'd like give me a shout ;)	
 	MISC
 		-v : specify the verbosity level
 		-h : display help
 	EXAMPLE:
-		./GooDork.py site:*.gov+(~Login|~Admin) -u:(admin|login|config)* -t:(Login|Administration)* --out=government_logins --L 100 --format=CSV
+		./GooDork.py site:"*.gov+(~Login|~Admin)" -u:"(admin|login|config)*" -t:"(Login|Administration)*" --out=government_logins --L 100 --format=CSV
 
 AUTHOR: Keith (k3170) Makan, https://twitter.com/k3170makan
 CONTRIBUTORS: 
