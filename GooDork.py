@@ -2,7 +2,7 @@
 #AUTHOR=Keith (k3170makan) Makan
 #Main controller for GooDork
 try:
-	from bs5 import BeautifulSoup as soup
+	from bs4 import BeautifulSoup as soup
 except ImportError:
 	import gooLib.getbs4 as getbs4
 	print 'bs4 was not found, commencing download and install'
