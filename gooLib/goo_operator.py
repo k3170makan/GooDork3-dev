@@ -51,8 +51,9 @@ class Operator:
 		# Check if regex switches exist first?
 		print "Running Regexes"
 		self.runRegex() #this augmentst the results list
+		#need to allow users to decide on the order in which regexes are applied
 		if self.hasOutputFile():
-			goo_writer.write(results,self.getOutFormat(),self.getOutFile())
+			#goo_writer.write(results,self.getOutFormat(),self.getOutFile()) <--- I'm planning on implementing the goo_writer like this
 	"""
 	"""
 	def runDork(self):
