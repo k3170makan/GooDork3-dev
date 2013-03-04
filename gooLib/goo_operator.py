@@ -53,9 +53,9 @@ class Operator:
 		self.runRegex() #this augmentst the results list
 		#need to allow users to decide on the order in which regexes are applied
 		if self.hasOutputFile():
-			#goo_writer.write(results,self.getOutFormat(),self.getOutFile()) <--- I'm planning on implementing the goo_writer like this
-	"""
-	"""
+			pass #STUB
+			#goowriter = new goo_writer(config)
+			#goowriter.write(self.results)
 	def runDork(self):
 		#getHTML for a dork and parse it to Result objects
 		if self.config and self.config.hasDork():
