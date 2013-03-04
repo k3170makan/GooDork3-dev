@@ -24,8 +24,11 @@ class goo_netlib:
 		try:
 			httpconn = httplib.HTTPConnection('www.google.com')
 			#check if the user prefers verbatim mode here
+			#print "making connection to google.com"
 			start="0"
-			httpconn.putrequest('GET','/search?q='+urllib2.quote(dork)+'&start='+start+'&num=100')
+			query_string = '/search?q='+urllib2.quote(dork)+'&start='+start+'&num=100'
+			#print query_string
+			httpconn.putrequest('GET',query_string)
 			#httpconn.putheader('Referer',self.spoofy.getReferer())
 			if self.config.hasUserAgent():
 				httpconn.putheader('User-agent',self.config.getUserAgent())
@@ -40,6 +43,8 @@ class goo_netlib:
 		resp = httpconn.getresponse()
 		status,reason = resp.status,resp.reason
 		headers = resp.getheaders()
+		print status
+		print headers
 		if True: #self.config.isVerbose() or True:
 			#verbs = int(self.config.getVerbosity())
 			verbs = 3

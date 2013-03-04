@@ -75,7 +75,10 @@ class config:
 		return
 
 	def hasDork(self):
-		return self.options['hasDork']
+		try:
+			return self.options['hasDork']
+		except KeyError,e:
+			return False
 	def getDork(self):
 		if self.hasDork():
 			return self.options['dork']

@@ -29,8 +29,6 @@ class Operator:
 			if self.config: #check that its not None
 				if self.config.hasDork(): #check if a dork was supplied
 					self.results=self.runDork()
-					if self.config.hasOutFile:
-						pass
 						# Move to goo_writer for writing to file.
 						
 					"""
@@ -40,7 +38,8 @@ class Operator:
 						except:
 							pass
 					"""
-				elif self.config.hasBulkMode(): #a bulk mode is being used!
+				bulkmodes = self.config.getBulkMode()
+				if len(bulkmodes) != 0: #a bulk mode is being used!
 					self.runBulkMode()
 				else: #no dork? then it must be a bulk mode!
 					raise Exception('[goo_operator] No Bulk Mode supplied in config')
@@ -51,7 +50,9 @@ class Operator:
 			
 		# Check if regex switches exist first?
 		print "Running Regexes"
-		self.runRegex()
+		self.runRegex() #this augmentst the results list
+		if self.hasOutputFile():
+			goo_writer.write(results,self.getOutFormat(),self.getOutFile())
 	"""
 	"""
 	def runDork(self):
@@ -59,7 +60,7 @@ class Operator:
 		if self.config and self.config.hasDork():
 			try:
 				goo_search = self.netlib.gooSearch(self.config.getDork()) #this should return a list of result objects
-				#print "\n[goo_search] %s" % (goo_search)
+				print "\n[goo_search] %s" % (goo_search)
 			except Exception,e:
 				raise Exception('\n[goo_operator] Problem running google search:\n\t%s, %s' % (str(type(e)),str(e)))
 			return goo_search #this is a results object
