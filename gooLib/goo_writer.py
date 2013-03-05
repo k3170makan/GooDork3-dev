@@ -2,9 +2,9 @@
 	Handles writing to specific outfile
 """
 from goo_csv import goo_csv
+from goo_html import goo_html
 import goo_xml
 import goo_JSON
-import goo_html
 from sys import exit
 class goo_writer:
 	def __init__(self,config):
@@ -26,6 +26,11 @@ class goo_writer:
 			if format == 'csv':
 				self.csv = goo_csv(self.config)
 				self.csv.goo2CSV(results)
+			if format == 'html':
+				self.csv = goo_html(self.config)
+				self.csv.goo2HTML(results)
+				print 'HTML!'
+
 			# Cover for the rest of the formats..
 
 		else:
