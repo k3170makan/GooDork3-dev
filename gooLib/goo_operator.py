@@ -3,7 +3,8 @@ from goo_rcfile import goo_rcfile as rcfile #too lazy to fix the name here lols
 from goo_netlib import goo_netlib
 from goo_result import goo_result as Result
 from sys import argv
-import goo_writer
+from goo_writer import goo_writer as writer
+import urllib
 """
 	The Operator,
 		*Handles all netlib calls
@@ -29,8 +30,22 @@ class Operator:
 			if self.config: #check that its not None
 				if self.config.hasDork(): #check if a dork was supplied
 					self.results=self.runDork()
-						# Move to goo_writer for writing to file.
-						
+					
+					# Move to goo_writer for writing to file.
+					if self.config.outFormat():
+						self.writer = writer(self.config)
+						self.writer.gooWriter(self.results)
+
+					# Else just display.
+					else:
+						try:
+							for reslt in self.results:
+								print u'{\n\turl:%s\n\ttitle:%r\n\tsummary:%r\n\tcacheLink:%s\nkeywords:%s\n}' % \
+								((urllib.unquote(reslt.url.encode('ascii')), reslt.title, reslt.summary, \
+								urllib.unquote(reslt.cacheLink.encode('ascii')), reslt.keyWords))
+						except Exception, e:
+							print "[!] problem in result repr"
+							raise Exception("\n\t[goo_result] Problem printing result:\n\t\t%s" % (str(e),))
 					"""
 					for result in self.results:
 						try:
@@ -38,8 +53,7 @@ class Operator:
 						except:
 							pass
 					"""
-				bulkmodes = self.config.getBulkMode()
-				if len(bulkmodes) != 0: #a bulk mode is being used!
+				elif self.config.hasBulkMode(): #a bulk mode is being used!
 					self.runBulkMode()
 				else: #no dork? then it must be a bulk mode!
 					raise Exception('[goo_operator] No Bulk Mode supplied in config')
@@ -50,18 +64,15 @@ class Operator:
 			
 		# Check if regex switches exist first?
 		print "Running Regexes"
-		self.runRegex() #this augmentst the results list
-		#need to allow users to decide on the order in which regexes are applied
-		if self.hasOutputFile():
-			pass #STUB
-			#goowriter = new goo_writer(config)
-			#goowriter.write(self.results)
+		self.runRegex()
+	"""
+	"""
 	def runDork(self):
 		#getHTML for a dork and parse it to Result objects
 		if self.config and self.config.hasDork():
 			try:
 				goo_search = self.netlib.gooSearch(self.config.getDork()) #this should return a list of result objects
-				print "\n[goo_search] %s" % (goo_search)
+				#print "\n[goo_search] %s" % (goo_search)
 			except Exception,e:
 				raise Exception('\n[goo_operator] Problem running google search:\n\t%s, %s' % (str(type(e)),str(e)))
 			return goo_search #this is a results object
