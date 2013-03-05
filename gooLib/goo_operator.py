@@ -34,7 +34,7 @@ class Operator:
 					# Move to goo_writer for writing to file.
 					if self.config.outFormat():
 						self.writer = writer(self.config)
-						self.writer.gooWriter(self.results)
+						self.writer.write(self.results)
 
 					# Else just display.
 					else:
@@ -60,7 +60,8 @@ class Operator:
 			else:
 				raise Exception('[goo_operator] No Config Recieved')
 		except Exception,e:
-			raise Exception("[goo_operator] Problem with config "+str(e))
+			# raise Exception("[goo_operator] Problem with config "+str(e))
+			print 'Problem?'+str(e)
 			
 		# Check if regex switches exist first?
 		print "Running Regexes"
