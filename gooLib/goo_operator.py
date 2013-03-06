@@ -60,8 +60,7 @@ class Operator:
 			else:
 				raise Exception('[goo_operator] No Config Recieved')
 		except Exception,e:
-			# raise Exception("[goo_operator] Problem with config "+str(e))
-			print 'Problem?'+str(e)
+			raise Exception("[goo_operator] Problem with config "+str(e))
 			
 		# Check if regex switches exist first?
 		print "Running Regexes"
