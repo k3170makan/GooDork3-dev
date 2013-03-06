@@ -54,19 +54,7 @@ class goo_result:
 		self.textStrings=[]
 		self.titleTag=[]
 		self.header=dict() #headers
-	def __repr__(self):
-		try:
-			return u"{\n\turl:%s\n\ttitle:%r\n\tsummary:%r\n\tcacheLink:%s\nkeywords:%s\n}" % (
-					urllib.unquote(self.url.encode('ascii')),
-					self.title,
-					self.summary,
-					urllib.unquote(self.cacheLink.encode('ascii')),
-					self.keyWords)
-			# Some titles/summaries may contain code that the terminal is not capable of displaying (For eg; UTF in cmd). 
-			# Titles/summaries have to be printed raw.
-		except Exception, e:
-			print "[!] problem in result repr"
-			raise Exception("\n\t[goo_result] Problem printing result:\n\t\t%s" % (str(e),))
+		
 	"""
 		Return the Title
 	"""

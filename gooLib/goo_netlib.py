@@ -22,7 +22,7 @@ class goo_netlib:
 		#self.spoofy=spoofString() #lib that I whipped up to generate random header data
 	def gooSearch(self,dork): #run a google search for something
 		try:
-			httpconn = httplib.HTTPConnection('www.google.com')
+			httpconn = httplib.HTTPConnection('www.google.co.in')
 			#check if the user prefers verbatim mode here
 			#print "making connection to google.com"
 			start="0"

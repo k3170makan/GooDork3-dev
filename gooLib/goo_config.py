@@ -146,8 +146,8 @@ class config:
 		return self.options['out']
 
 	def outFormat(self): #tell the caller the output format
-		if self.hasOutFile():
-			return self.options.has_key('format')
+		if 'format' in self.options:
+			return True
 	def getOutFormat(self):
 			return self.options['format']
 
